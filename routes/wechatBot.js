@@ -39,15 +39,6 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
 
       }
       break;
-    case 2:
-      {
-        res.reply({
-          type: "text",
-          content: TOKEN
-        });
-
-      }
-      break;
     default:
       res.reply({
         type: "text",

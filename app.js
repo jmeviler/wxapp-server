@@ -10,7 +10,6 @@ var cloud = require('./cloud');
 var app = express();
 
 var TOKEN = process.env.TOKEN;
-console.log(TOKEN);
 
 // 设置 view 引擎
 app.set('views', path.join(__dirname, 'views'));
