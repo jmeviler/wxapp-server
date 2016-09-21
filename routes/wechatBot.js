@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var rp = require('request-promise');
 var wechat = require('wechat');
+var token = require('../actions/token');
 
 var TOKEN = process.env.TOKEN;
 var APPID = process.env.APPID;
@@ -20,14 +21,14 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
   var content = message.Content;
 
   if(content === 'test') {
-    res.reply([
-      {
-        title: '你来我家接我吧',
-        description: '这是女神与高富帅之间的对话',
-        picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
-        url: 'http://nodeapi.cloudfoundry.com/'
-      }
-    ]);
+    if (!GLOBAL.token) {
+      token();
+    }
+
+    res.reply({
+      type: "text",
+      content: GLOBAL.token
+    });
   }
 
   var options = {
