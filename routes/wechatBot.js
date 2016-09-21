@@ -1,9 +1,11 @@
 var router = require('express').Router();
+var rp = require('request-promise');
 
 var TOKEN = process.env.TOKEN;
 var APPID = process.env.APPID;
 var EncodingAESKey = process.env.EncodingAESKey;
 var SecretKey = process.env.SecretKey;
+var TuLingAPIKey = process.env.TuLingAPIKey;
 
 // 引用 wechat 库，详细请查看 https://github.com/node-webot/wechat
 var wechat = require('wechat');
@@ -17,35 +19,27 @@ var WechatAPI = require('wechat-api');
 var api = new WechatAPI(APPID, SecretKey);
 
 router.use('/', wechat(config.token).text(function(message, req, res, next) {
-  var keyArray = ['你好', '约吗', 'test'];
   var content = message.Content;
-  var keyIndex = keyArray.indexOf(content);
-  switch (keyIndex) {
-    case 0:
-      {
-        res.reply({
-          type: "text",
-          content: '您好，大家好才是真的好！'
-        });
-
-      }
-      break;
-    case 1:
-      {
-        res.reply({
-          type: "text",
-          content: '不约，不约，叔叔我们不约！'
-        });
-
-      }
-      break;
-    default:
+	var options = {
+		method: 'POST',
+		uri: 'http://www.tuling123.com/openapi/api',
+		body: {
+			"key": TuLingAPIKey,
+			"info": content, 
+			"loc": "上海市浦东新区"            
+		},
+		json: true 
+	};
+	rp(options)
+    .then(function (parsedBody) {
       res.reply({
         type: "text",
-        content: '服务器挂掉了，你的要求暂时无法满足……'
+        content: parsedBody.text
       });
-      break;
-  }
+    })
+    .catch(function (err) {
+        console.error(err);
+    });
 }).image(function(message, req, res, next) {
   // message为图片内容
   // { ToUserName: 'gh_d3e07d51b513',
