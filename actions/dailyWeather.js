@@ -21,7 +21,7 @@ function dailyWeather () {
     if (!GLOBAL.token) {
       token();
     }
-
+    var data = parsedBody.results[0].now;
     var options = {
     method: 'POST',
     uri: constant.sendCustomMsg + GLOBAL.token,
@@ -31,16 +31,9 @@ function dailyWeather () {
       "news": {
         "articles": [
           {
-            "title": "Happy Day",
-            "description": "Is Really A Happy Day",
-            "url": "URL",
-            "picurl": "PIC_URL"
-          },
-          {
-            "title": "Happy Day",
-            "description": "Is Really A Happy Day",
-            "url": "URL",
-            "picurl": "PIC_URL"
+            "title": '天气:' + data.text,
+            "description": '温度:' + data.temperature +'度',
+            "picurl": 'http://exmail.leanapp.cn/images/'+ data.code +'.png'
           }
         ]
       }
