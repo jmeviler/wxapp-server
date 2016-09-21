@@ -10,8 +10,8 @@ AV.Cloud.define('hello', function(request, response) {
   response.success('Hello world!');
 });
 
-AV.Cloud.define('test', function(request, response) {
-  sendPost();
+AV.Cloud.define('dailyWeather', function(request, response) {
+  
 });
 
 module.exports = AV.Cloud;
