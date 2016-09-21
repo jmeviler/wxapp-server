@@ -2,6 +2,7 @@ var router = require('express').Router();
 var rp = require('request-promise');
 var wechat = require('wechat');
 var token = require('../actions/token');
+var dailyWeather = require('../actions/dailyWeather');
 
 var TOKEN = process.env.TOKEN;
 var APPID = process.env.APPID;
@@ -21,6 +22,10 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
   var content = message.Content;
 
   if(content === 'test') {
+    dailyWeather();
+  }
+
+  if(content === 'token') {
     if (!GLOBAL.token) {
       token();
     }
