@@ -21,35 +21,39 @@ function dailyWeather () {
     if (!GLOBAL.token) {
       token();
     }
-    var data = parsedBody.results[0].now;
-    var options = {
-    method: 'POST',
-    uri: constant.sendCustomMsg + GLOBAL.token,
-    body: {
-      "touser": process.env.USERONE,
-      "msgtype": "news",
-      "news": {
-        "articles": [
-          {
-            "picurl": 'http://exmail.leanapp.cn/images/header.jpg'
-          },
-          {
-              "title": "天气：" + data.text + ", 温度：" + + data.temperature +'度',
-              "picurl": 'http://exmail.leanapp.cn/images/'+ data.code +'.png'
-          }
-        ]
-      }
-    },
-    json: true
-  };
-  rp(options)
-    .then(function (parsedBody) {
-      console.error(parsedBody);
-    })
-    .catch(function (err) {
-        console.error(err);
-    });
 
+    var data = parsedBody.results[0].now;
+    var touser = [process.env.USERONE, process.env.USERTWO];
+
+    for (var index = 0; index < touser.length; index++) {
+      var options = {
+        method: 'POST',
+        uri: constant.sendCustomMsg + GLOBAL.token,
+        body: {
+          "touser": touser[index],
+          "msgtype": "news",
+          "news": {
+            "articles": [
+              {
+                "picurl": 'http://exmail.leanapp.cn/images/header.jpg'
+              },
+              {
+                  "title": "天气：" + data.text + ", 温度：" + + data.temperature +'度',
+                  "picurl": 'http://exmail.leanapp.cn/images/'+ data.code +'.png'
+              }
+            ]
+          }
+        },
+        json: true
+      };
+      rp(options)
+        .then(function (parsedBody) {
+          console.error(parsedBody);
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
+    }
   })
   .catch(function (err) {
     console.error(err);
