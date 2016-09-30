@@ -23,7 +23,7 @@ function dailyWeather () {
     }
 
     var data = parsedBody.results[0].now;
-    var touser = [process.env.USERONE, process.env.USERTWO];
+    var touser = [process.env.USERONE];
 
     for (var index = 0; index < touser.length; index++) {
       var options = {
