@@ -20,11 +20,12 @@
     "ejs": "2.3.1",
     "express": "4.12.3",
     "leanengine": "^0.4.0",
+    "moment": "^2.15.1",
     "request": "^2.69.0",
+    "request-promise": "^4.1.1",
     "strformat": "0.0.7",
     "wechat": "^2.0.3",
-    "wechat-api": "^1.24.0",
-    "request-promise": "^4.1.1"
+    "wechat-api": "^1.24.0"
   },
   "engines": {
     "node": "4.x"

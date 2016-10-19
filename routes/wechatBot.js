@@ -2,6 +2,7 @@ var router = require('express').Router();
 var rp = require('request-promise');
 var wechat = require('wechat');
 var token = require('../actions/token');
+var wakatime = require('../actions/wakatime');
 var dailyWeather = require('../actions/dailyWeather');
 
 var TOKEN = process.env.TOKEN;
@@ -34,6 +35,10 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
       type: "text",
       content: GLOBAL.token
     });
+  }
+
+  if(content === 'waka') {
+    wakatime();
   }
 
   var options = {
