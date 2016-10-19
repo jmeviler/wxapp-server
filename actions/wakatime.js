@@ -19,7 +19,7 @@ function token () {
 
   rp(options)
   .then(function (parsedBody) {
-    console.error(parsedBody.data.grand_total.text);
+    console.error(parsedBody.data);
   })
   .catch(function (err) {
     console.error(err);
