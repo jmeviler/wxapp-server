@@ -20,7 +20,7 @@ function token () {
   rp(options)
   .then(function (parsedBody) {
     GLOBAL.grand_total = parsedBody.data.grand_total;
-    console.error(parsedBody.data.grand_total);
+    console.error(typeof parsedBody.data.grand_total);
   })
   .catch(function (err) {
     console.error(err);
