@@ -24,6 +24,7 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
 
   if(content === 'test') {
     dailyWeather();
+    return;
   }
 
   if(content === 'token') {
@@ -35,10 +36,17 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
       type: "text",
       content: GLOBAL.token
     });
+    return;
   }
 
   if(content === 'waka') {
-    wakatime();
+    wakatime();GLOBAL.grand_total
+
+    res.reply({
+      type: "text",
+      content: GLOBAL.grand_total
+    });
+    return;
   }
 
   var options = {

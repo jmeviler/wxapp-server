@@ -3,7 +3,7 @@ var moment = require('moment');
 
 var WakaKey = process.env.WakaKey;
 
-function token () {
+function wakatime () {
   var options = {
     uri: 'https://wakatime.com/api/v1/users/current/summaries',
     qs: {
@@ -19,12 +19,12 @@ function token () {
 
   rp(options)
   .then(function (parsedBody) {
-    GLOBAL.grand_total = parsedBody.data.grand_total;
-    console.error(typeof parsedBody.data.grand_total);
+    GLOBAL.grand_total = parsedBody.data[0].grand_total.text;
+    console.error(typeof parsedBody.data);
   })
   .catch(function (err) {
     console.error(err);
   });
 }
 
-module.exports = token;
+module.exports = wakatime;
