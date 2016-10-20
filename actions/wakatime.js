@@ -20,7 +20,7 @@ function wakatime () {
   rp(options)
   .then(function (parsedBody) {
     GLOBAL.grand_total = parsedBody.data[0].grand_total.text;
-    console.error(typeof parsedBody.data);
+    console.error(parsedBody.data[0].grand_total.text);
   })
   .catch(function (err) {
     console.error(err);
