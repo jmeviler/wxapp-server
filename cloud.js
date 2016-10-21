@@ -1,5 +1,9 @@
 var AV = require('leanengine');
-var token = require('./actions/token');
+var rp = require('request-promise');
+
+var APPID = process.env.APPID;
+var SecretKey = process.env.SecretKey;
+
 var dailyWeather = require('./actions/dailyWeather');
 
 AV.Cloud.define('hello', function(request, response) {
