@@ -3,6 +3,7 @@ var token = require('./actions/token');
 var dailyWeather = require('./actions/dailyWeather');
 
 AV.Cloud.define('hello', function(request, response) {
+  console.error('Hello world!');
   response.success('Hello world!');
 });
 
