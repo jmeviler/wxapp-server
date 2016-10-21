@@ -35,11 +35,11 @@ function dailyWeather () {
           "news": {
             "articles": [
               {
-                "picurl": 'http://exmail.leanapp.cn/images/header.jpg'
+                "picurl": 'http://robot.leanapp.cn/images/header.jpg'
               },
               {
                   "title": "天气：" + data.text + ", 温度：" + + data.temperature +'度',
-                  "picurl": 'http://exmail.leanapp.cn/images/'+ data.code +'.png'
+                  "picurl": 'http://robot.leanapp.cn/images/'+ data.code +'.png'
               }
             ]
           }

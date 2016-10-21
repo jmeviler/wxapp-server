@@ -40,7 +40,7 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
   }
 
   if(content === 'waka') {
-    wakatime();GLOBAL.grand_total
+    wakatime();
 
     res.reply({
       type: "text",

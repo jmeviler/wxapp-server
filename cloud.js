@@ -13,6 +13,7 @@ AV.Cloud.define('hello', function(request, response) {
 
 AV.Cloud.define('dailyWeather', function(request, response) {
   dailyWeather();
+  response.success('send dailyWeather');
 });
 
 AV.Cloud.define('token', function(request, response) {
