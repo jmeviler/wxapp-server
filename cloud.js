@@ -1,5 +1,6 @@
 var AV = require('leanengine');
 var rp = require('request-promise');
+var http = require('http');
 
 var APPID = process.env.APPID;
 var SecretKey = process.env.SecretKey;
@@ -9,6 +10,15 @@ var dailyWeather = require('./actions/dailyWeather');
 AV.Cloud.define('hello', function(request, response) {
   console.error('Hello world!');
   response.success('Hello world!');
+});
+
+AV.Cloud.define('noSleep', function(request, response) {
+  http.get("http://robot.leanapp.cn/sleep", function(res) {
+  console.error("Got response: " + res.statusCode);
+  }).on('error', function(e) {
+  console.error("Got error: " + e.message);
+  });
+  response.success('send no Sleep success');
 });
 
 AV.Cloud.define('dailyWeather', function(request, response) {
