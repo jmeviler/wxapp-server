@@ -8,7 +8,6 @@ var wechat = require('./routes/wechatBot');
 var cloud = require('./cloud');
 
 var app = express();
-
 var TOKEN = process.env.TOKEN;
 
 // 设置 view 引擎
