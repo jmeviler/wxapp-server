@@ -18,6 +18,7 @@ var config = {
 };
 
 var WechatAPI = require('wechat-api');
+var api = new WechatAPI(APPID, SecretKey);
 
 router.use('/', wechat(config.token).text(function(message, req, res, next) {
   var content = message.Content;
@@ -28,13 +29,10 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
   }
 
   if(content === 'token') {
-    if (!GLOBAL.token) {
-      token();
-    }
-
-    res.reply({
-      type: "text",
-      content: GLOBAL.token
+    api.getLatestToken(function (err, data, res){
+      console.error(JSON.stringify(err));
+      console.error(JSON.stringify(data));
+      console.error(JSON.stringify(res));
     });
     return;
   }
