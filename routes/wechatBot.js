@@ -20,24 +20,22 @@ var config = {
 var WechatAPI = require('wechat-api');
 var api = new WechatAPI(APPID, SecretKey);
 
-router.use('/', wechat(config.token).text(function(message, req, res, next) {
+router.use('/', wechat(config.token).text(function (message, req, res, next) {
   var content = message.Content;
 
-  if(content === 'test') {
+  if (content === 'test') {
     dailyWeather();
     return;
   }
 
-  if(content === 'token') {
-    api.getLatestToken(function (err, data, res){
-      console.error(JSON.stringify(err));
+  if (content === 'token') {
+    api.getLatestToken(function (err, data, res) {
       console.error(JSON.stringify(data));
-      console.error(JSON.stringify(res));
     });
     return;
   }
 
-  if(content === 'waka') {
+  if (content === 'waka') {
     wakatime();
 
     res.reply({
@@ -58,7 +56,7 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
     json: true
   };
 
-	rp(options)
+  rp(options)
     .then(function (parsedBody) {
       res.reply({
         type: "text",
@@ -66,7 +64,7 @@ router.use('/', wechat(config.token).text(function(message, req, res, next) {
       });
     })
     .catch(function (err) {
-        console.error(err);
+      console.error(err);
     });
 }).middlewarify());
 
