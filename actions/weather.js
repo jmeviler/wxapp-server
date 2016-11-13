@@ -55,4 +55,4 @@ function sendCallBack (err, result) {
   console.error(result);
 }
 
-module.exports = dailyWeather;
+module.exports = weather;
