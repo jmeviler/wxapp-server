@@ -41,7 +41,7 @@ AV.Cloud.define('dailyWeather', function(req, response) {
 });
 
 function sendWeather (error, res, body) {
-  console.error(error);
+  console.error(error, res, body);
   var resData = JSON.parse(body);
   var tipt = resData.results[0].index[0];
   var weather = resData.results[0].weather_data[0];
