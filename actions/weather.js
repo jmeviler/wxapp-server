@@ -1,5 +1,3 @@
-var AV = require('leanengine');
-var http = require('http');
 var request  = require('request');
 
 var APPID = process.env.APPID;
@@ -11,32 +9,18 @@ var USERONE = process.env.USERONE;
 var WechatAPI = require('wechat-api');
 var api = new WechatAPI(APPID, SecretKey);
 
-AV.Cloud.define('hello', function(request, response) {
-  console.error('Hello world!');
-  response.success('Hello world!');
-});
-
-AV.Cloud.define('noSleep', function(request, response) {
-  http.get("http://robot.leanapp.cn/sleep", function(res) {
-  console.error("Got response: " + res.statusCode);
-  }).on('error', function(e) {
-  console.error("Got error: " + e.message);
-  });
-  response.success('send no Sleep success');
-});
-
-AV.Cloud.define('dailyWeather', function(req, response) {
-  var option = {
-    url: 'http://api.map.baidu.com/telematics/v3/weather',
-    qs: {
-      ak: baiduKey,
-      location: 'shanghai',
-      output: 'json'
-    }
+var option = {
+  url: 'http://api.map.baidu.com/telematics/v3/weather',
+  qs: {
+    ak: baiduKey,
+    location: 'shanghai',
+    output: 'json'
   }
+}
+
+function weather () {
   request(option, sendWeather);
-  response.success('send dailyWeather');
-});
+}
 
 function sendWeather (error, res, body) {
   var resData = JSON.parse(body);
@@ -48,7 +32,7 @@ function sendWeather (error, res, body) {
       "color":"#173177"
     },
     "weather":{
-      "value": weather.weather + ',' + weather.wind,
+      "value": weather.weather + ', ' + weather.wind,
       "color":"#173177"
     },
     "temperature": {
@@ -71,4 +55,4 @@ function sendCallBack (err, result) {
   console.error(result);
 }
 
-module.exports = AV.Cloud;
+module.exports = dailyWeather;

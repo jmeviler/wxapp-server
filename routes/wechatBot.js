@@ -3,7 +3,7 @@ var rp = require('request-promise');
 var wechat = require('wechat');
 var token = require('../actions/token');
 var wakatime = require('../actions/wakatime');
-var dailyWeather = require('../actions/dailyWeather');
+var weather = require('../actions/weather');
 
 var TOKEN = process.env.TOKEN;
 var APPID = process.env.APPID;
@@ -24,7 +24,7 @@ router.use('/', wechat(config.token).text(function (message, req, res, next) {
   var content = message.Content;
 
   if (content === 'test') {
-    dailyWeather();
+    weather();
     return;
   }
 
