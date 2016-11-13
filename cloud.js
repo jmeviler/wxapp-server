@@ -4,7 +4,7 @@ var http = require('http');
 var request  = require('request');
 
 var APPID = process.env.APPID;
-var WeatherKey = process.env.WeatherKey;
+var baiduKey = process.env.baiduKey;
 var SecretKey = process.env.SecretKey;
 var template1 = process.env.template1;
 var USERONE = process.env.USERONE;
@@ -29,11 +29,11 @@ AV.Cloud.define('noSleep', function(request, response) {
 
 AV.Cloud.define('dailyWeather', function(req, response) {
   var option = {
-    url: 'http://api.thinkpage.cn/v3/weather/now.json',
+    url: 'http://api.map.baidu.com/telematics/v3/weather',
     qs: {
-      key: WeatherKey,
-      location: 'shanghai',
-      unit: 'c'
+      ak: baiduKey,
+      location: '上海',
+      output: 'json'
     }
   }
   request(option, sendWeather);
@@ -41,23 +41,28 @@ AV.Cloud.define('dailyWeather', function(req, response) {
 });
 
 function sendWeather (error, res, body) {
-  var resData = JSON.parse(body).results[0].now;
+  var resData = JSON.parse(body);
+  var tipt = resData.results[0].index[0];
+  var weather = resData.results[0].weather_data[0];
   var data = {
-    "title": {
-        "value":"天气预报",
-        "color":"#173177"
+    "date": {
+      "value": weather.date,
+      "color":"#173177"
     },
     "weather":{
-        "value":resData.text,
-        "color":"#173177"
+      "value": weather.weather + ',' + weather.wind,
+      "color":"#173177"
     },
     "temperature": {
-        "value":resData.temperature + "度",
-        "color":"#173177"
+      "value": weather.temperature,
+      "color":"#173177"
     },
-    "remark": {
-        "value":"请及时参考",
-        "color":"#173177"
+    "tips":{
+      "value": tipt.tipt
+    },
+    "des":{
+      "value": tipt.des,
+      "color":"#173177"
     }
   }
   api.sendTemplate(USERONE, template1, '', data);
