@@ -32,7 +32,7 @@ AV.Cloud.define('dailyWeather', function(req, response) {
     url: 'http://api.map.baidu.com/telematics/v3/weather',
     qs: {
       ak: baiduKey,
-      location: '上海',
+      location: 'shanghai',
       output: 'json'
     }
   }
@@ -42,7 +42,6 @@ AV.Cloud.define('dailyWeather', function(req, response) {
 
 function sendWeather (error, res, body) {
   var resData = JSON.parse(body);
-  console.error(resData);
   var tipt = resData.results[0].index[0];
   var weather = resData.results[0].weather_data[0];
   var data = {
@@ -66,6 +65,7 @@ function sendWeather (error, res, body) {
       "color":"#173177"
     }
   }
+  console.error(data);
   api.sendTemplate(USERONE, template1, '', data);
 }
 
