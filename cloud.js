@@ -65,8 +65,12 @@ function sendWeather (error, res, body) {
       "color":"#173177"
     }
   }
-  console.error(data);
-  api.sendTemplate(USERONE, template1, '', data);
+  api.sendTemplate(USERONE, template1, '', data, sendCallBack);
+}
+
+function sendCallBack (err, result) {
+  console.error(err);
+  console.error(result);
 }
 
 module.exports = AV.Cloud;
