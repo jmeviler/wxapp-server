@@ -2,6 +2,8 @@ var AV = require('leanengine');
 var http = require('http');
 var request  = require('request');
 
+var weather = require('./actions/weather');
+
 var APPID = process.env.APPID;
 var baiduKey = process.env.baiduKey;
 var SecretKey = process.env.SecretKey;
@@ -26,49 +28,8 @@ AV.Cloud.define('noSleep', function(request, response) {
 });
 
 AV.Cloud.define('dailyWeather', function(req, response) {
-  var option = {
-    url: 'http://api.map.baidu.com/telematics/v3/weather',
-    qs: {
-      ak: baiduKey,
-      location: 'shanghai',
-      output: 'json'
-    }
-  }
-  request(option, sendWeather);
+  weather();
   response.success('send dailyWeather');
 });
-
-function sendWeather (error, res, body) {
-  var resData = JSON.parse(body);
-  var tipt = resData.results[0].index[0];
-  var weather = resData.results[0].weather_data[0];
-  var data = {
-    "date": {
-      "value": weather.date,
-      "color":"#173177"
-    },
-    "weather":{
-      "value": weather.weather + ',' + weather.wind,
-      "color":"#173177"
-    },
-    "temperature": {
-      "value": weather.temperature,
-      "color":"#173177"
-    },
-    "tips":{
-      "value": tipt.tipt
-    },
-    "des":{
-      "value": tipt.des,
-      "color":"#173177"
-    }
-  }
-  api.sendTemplate(USERONE, template1, '', data, sendCallBack);
-}
-
-function sendCallBack (err, result) {
-  console.error(err);
-  console.error(result);
-}
 
 module.exports = AV.Cloud;
