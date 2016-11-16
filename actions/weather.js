@@ -5,6 +5,7 @@ var baiduKey = process.env.baiduKey;
 var SecretKey = process.env.SecretKey;
 var template1 = process.env.template1;
 var USERONE = process.env.USERONE;
+var USERTWO = process.env.USERTWO;
 
 var WechatAPI = require('wechat-api');
 var api = new WechatAPI(APPID, SecretKey);
@@ -23,6 +24,7 @@ function weather () {
 }
 
 function sendWeather (error, res, body) {
+  var userList = [USERONE, USERTWO];
   var resData = JSON.parse(body);
   var tipt = resData.results[0].index[0];
   var weather = resData.results[0].weather_data[0];
@@ -47,7 +49,10 @@ function sendWeather (error, res, body) {
       "color":"#173177"
     }
   }
-  api.sendTemplate(USERONE, template1, '', data, sendCallBack);
+
+  for (var i = 0; i < userList.length; i++) {
+    api.sendTemplate(userList[i], template1, '', data, sendCallBack);
+  }
 }
 
 function sendCallBack (err, result) {
