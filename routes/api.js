@@ -56,10 +56,23 @@ router.get('/bus/:name', function(req, res, next){
     for(key in body) {
       busLine[key] = body[key].trim();
     }
+
+    var op = {
+      url: busAPITwo,
+      qs: {
+        name: busLine.line_name,
+        lineid: busLine.line_id
+      }
+    }
+    request(option, function(error, response, body){
+      body = JSON.parse(body);
+      body.busLine = busLine;
+    }
+    res.send(body);
     console.error(busLine);
   });
 
-  console.error(busLine);
+  console.error(busLine, '1111');
 });
 
 module.exports = router;
