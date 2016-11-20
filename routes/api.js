@@ -64,10 +64,12 @@ router.get('/bus/:name', function(req, res, next){
         lineid: busLine.line_id
       }
     }
+
     request(option, function(error, response, body){
       body = JSON.parse(body);
       body.busLine = busLine;
-    }
+    });
+
     res.send(body);
     console.error(busLine);
   });
