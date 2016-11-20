@@ -42,7 +42,6 @@ router.get('/express/:type/:postId', function(req, res, next){
   });
 });
 
-
 router.get('/bus/:name', function(req, res, next){
   var name = req.params.name;
   var option = {
@@ -71,6 +70,27 @@ router.get('/bus/:name', function(req, res, next){
       bd.busLine = busLine;
       res.send(bd);
     });
+  });
+});
+
+router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next){
+  var name = req.params.name;
+  var lineId = req.params.lineid;
+  var stopId = req.params.stopid;
+  var direction = req.params.direction;
+
+  var option = {
+    url: busAPIThree,
+    qs: {
+      name: name,
+      lineid: lineId,
+      stopid: stopId,
+      direction: direction
+    }
+  }
+
+  request(option, function(error, response, body){
+    res.send(JSON.parse(body));
   });
 });
 
