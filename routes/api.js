@@ -50,12 +50,16 @@ router.get('/bus/:name', function(req, res, next){
     qs: { name: name }
   }
 
+  var busLine = {};
   request(option, function(error, response, body){
-    var busLine = JSON.parse(body);
-    var lineName = busLine.line_name.trim();
-    var lineId = busLine.line_id.trim();
-    console.error(lineName, lineId);
+    body = JSON.parse(body);
+    for(key in body) {
+      busLine[key] = body[key].trim();
+    }
+    console.error(busLine);
   });
+
+  console.error(busLine);
 });
 
 module.exports = router;
