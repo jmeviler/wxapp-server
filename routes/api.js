@@ -52,7 +52,7 @@ router.get('/bus/:name', function(req, res, next){
 
   request(option, function(error, response, body){
     var b1 = body.trim();
-    var b2 ＝ body.replace("/\n", "").replace("/\t", "");
+    var b2 ＝ body.replace("\n", "").replace("\t", "");
     // var busLine = JSON.parse(body);
     // var lineName
     console.error(JSON.parse(b1));
