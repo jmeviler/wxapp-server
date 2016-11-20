@@ -68,13 +68,9 @@ router.get('/bus/:name', function(req, res, next){
     request(option, function(error, response, body){
       body = JSON.parse(body);
       body.busLine = busLine;
+      res.send(body);
     });
-
-    res.send(body);
-    console.error(busLine);
   });
-
-  console.error(busLine, '1111');
 });
 
 module.exports = router;
