@@ -3,6 +3,9 @@ var request  = require('request');
 
 var baiduKey = process.env.baiduKey;
 var expressAPI = process.env.expressAPI;
+var busAPIOne = process.env.busAPIOne;
+var busAPITwo = process.env.busAPITwo;
+var busAPIThree = process.env.busAPIThree;
 
 router.get('/weather', function(req, res, next) {
   var option = {
@@ -36,6 +39,20 @@ router.get('/express/:type/:postId', function(req, res, next){
 
   request(option, function(error, response, body){
     res.send(JSON.parse(body));
+  });
+});
+
+
+router.get('/bus/:name', function(req, res, next){
+  var name = req.params.name;
+  var option = {
+    url: busAPIOne,
+    qs: { name: name }
+  }
+
+  request(option, function(error, response, body){
+    console.error(JSON.parse(body))
+    // res.send(JSON.parse(body));
   });
 });
 
