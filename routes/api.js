@@ -51,10 +51,10 @@ router.get('/bus/:name', function(req, res, next){
   }
 
   request(option, function(error, response, body){
-    var b1 = body.trim();
-    // var busLine = JSON.parse(body);
-    // var lineName
-    console.error(JSON.parse(b1));
+    var busLine = JSON.parse(body);
+    var lineName = busLine.line_name.trim();
+    var lineId = busLine.line_id.trim();
+    console.error(lineName, lineId);
   });
 });
 
