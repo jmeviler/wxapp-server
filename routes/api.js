@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var request  = require('request');
+var request = require('request');
 
 var baiduKey = process.env.baiduKey;
 var expressAPI = process.env.expressAPI;

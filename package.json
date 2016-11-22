@@ -19,6 +19,8 @@
     "cookie-parser": "^1.3.5",
     "ejs": "2.3.1",
     "express": "4.12.3",
+    "leancloud-realtime": "^3.3.1",
+    "leancloud-storage": "^1.5.2",
     "leanengine": "^0.4.0",
     "moment": "^2.15.1",
     "request": "^2.78.0",
