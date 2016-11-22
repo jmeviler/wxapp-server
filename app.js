@@ -55,7 +55,7 @@ app.get('/sleep', function(req, res) {
   res.render('index', {});
 });
 
-app.use('/api',api);
+app.use('/api', api);
 app.use('/note', note);
 app.use('/wechat', wechat);
 
