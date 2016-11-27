@@ -51,6 +51,7 @@ router.get('/bus/:name', function(req, res, next){
 
   var busLine = {};
   request(option, function(error, response, body){
+    console.error(response);
     body = JSON.parse(body);
     for(key in body) {
       busLine[key] = body[key].trim();
