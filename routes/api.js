@@ -95,4 +95,9 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
   });
 });
 
+router.get('/test', function(){
+  res.send('Hello World');
+});
+
+
 module.exports = router;
