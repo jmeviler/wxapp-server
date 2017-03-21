@@ -1,6 +1,6 @@
 {
-  "name": "LeanEngine_Weixin_Demo",
-  "version": "1.0.0",
+  "name": "WeChat_WeApp_Demo",
+  "version": "0.0.1",
   "description": "WeChat Server For LeanEngine",
   "main": "server.js",
   "scripts": {
@@ -11,7 +11,8 @@
     "LeanCloud",
     "LeanEngine",
     "express",
-    "WeChat"
+    "WeChat",
+    "WeApp"
   ],
   "license": "MIT",
   "dependencies": {
@@ -23,6 +24,7 @@
     "leancloud-storage": "^1.5.2",
     "leanengine": "^0.4.0",
     "moment": "^2.15.1",
+    "objtree": "^0.1.24",
     "request": "^2.78.0",
     "request-promise": "^4.1.1",
     "strformat": "0.0.7",

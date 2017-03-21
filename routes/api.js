@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var request = require('request');
+var ObjTree = require('objtree');
 
 var baiduKey = process.env.baiduKey;
 var expressAPI = process.env.expressAPI;
@@ -91,7 +92,11 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
   }
 
   request(option, function(error, response, body){
-    res.send(JSON.parse(body));
+    if (response.statusCode === 200) {
+      res.send(JSON.parse(body));
+    } else {
+      res.send({ "cars":[] });
+    }
   });
 });
 
