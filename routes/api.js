@@ -68,7 +68,6 @@ router.get('/bus/:name', function(req, res, next){
 
     request(op, function(error, response, bd){
       bd = JSON.parse(bd);
-      console.error(bd);
       bd.busLine = busLine;
       res.send(bd);
     });

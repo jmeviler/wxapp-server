@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var wechat = require('./routes/wechatBot');
 var api = require('./routes/api');
+var busLines = require('./routes/busLines');
 var note = require('./routes/noteBook');
 var cloud = require('./cloud');
 
@@ -56,6 +57,7 @@ app.get('/sleep', function(req, res) {
 });
 
 app.use('/api', api);
+app.use('/bus', busLines);
 app.use('/note', note);
 app.use('/wechat', wechat);
 
