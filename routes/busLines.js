@@ -21,4 +21,13 @@ router.get('/:name', function(req, res) {
   });
 });
 
+router.get('/names/all', function(req, res) {
+  var name = req.params.name;
+  var query = new AV.Query('Lines');
+  query.exists('names');
+  query.find().then(function(result) {
+    res.send(result[0]);
+  });
+});
+
 module.exports = router;
