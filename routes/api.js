@@ -47,7 +47,10 @@ router.get('/bus/:name', function(req, res, next){
   var name = req.params.name;
   var option = {
     url: busAPIOne,
-    qs: { name: name }
+    qs: {
+      action: 'One',
+      name: name
+    }
   }
 
   var busLine = {};
@@ -61,6 +64,7 @@ router.get('/bus/:name', function(req, res, next){
     var op = {
       url: busAPITwo,
       qs: {
+        action: 'Two',
         name: busLine.line_name,
         lineid: busLine.line_id
       }
@@ -83,6 +87,7 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
   var option = {
     url: busAPIThree,
     qs: {
+      action: 'Three',
       name: name,
       lineid: lineId,
       stopid: stopId,
