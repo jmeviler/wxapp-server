@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var wechat = require('./routes/wechatBot');
 var api = require('./routes/api');
 var busLines = require('./routes/busLines');
+var user = require('./routes/user');
 var note = require('./routes/noteBook');
 var cloud = require('./cloud');
 
@@ -57,8 +58,9 @@ app.get('/sleep', function(req, res) {
 });
 
 app.use('/api', api);
-app.use('/bus', busLines);
 app.use('/note', note);
+app.use('/api/user', user);
+app.use('/bus', busLines);
 app.use('/wechat', wechat);
 
 // 如果任何路由都没匹配到，则认为 404

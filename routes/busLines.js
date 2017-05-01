@@ -4,19 +4,19 @@ var router = require('express').Router();
 
 router.get('/:name', function(req, res) {
   var name = req.params.name;
-  var query = new AV.Query('BusLines');
+  var query = new AV.Query('LinesInfo');
   query.equalTo('line_name', name);
-  query.equalTo('direction_id', 0);
   query.find().then(function(busData) {
     var result = {};
     busData = busData[0]._serverData;
-    result.info = {
+    result.busLine = {
       "line_name": busData.line_name,
       "line_id": busData.line_id,
-      "start_stop": busData.direction_name.split('-')[0],
-      "end_stop": busData.direction_name.split('-')[1],
-    }
-    result.stationList = busData.station_list.split('-');
+      "start_stop": busData.start_stop,
+      "end_stop": busData.end_stop,
+    };
+    result.lineResults0 = busData.lineResults0;
+    result.lineResults1 = busData.lineResults1;
     res.send(result);
   });
 });
