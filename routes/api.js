@@ -68,7 +68,6 @@ router.get('/bus/:name', function(req, res, next){
         res.send(bd);
       });
     } else {
-      console.error(name);
       var query = new AV.Query('LinesInfo');
       query.equalTo('line_name', name);
       query.find().then(function(busData) {
@@ -80,9 +79,10 @@ router.get('/bus/:name', function(req, res, next){
           "start_stop": busData.start_stop,
           "end_stop": busData.end_stop,
         };
-        console.error(result);
         result.lineResults0 = busData.lineResults0;
         result.lineResults1 = busData.lineResults1;
+        console.error(result);
+        console.error('test---', res);
         res.send(result);
       });
     }
