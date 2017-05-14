@@ -44,49 +44,48 @@ router.get('/express/:type/:postId', function(req, res, next){
 
 router.get('/bus/:name', function(req, res, next){
   var name = req.params.name;
-  var option = {
-    url: busAPIOne,
-    qs: { action: 'One', name: name }
-  }
+  // var option = {
+  //   url: busAPIOne,
+  //   qs: { action: 'One', name: name }
+  // }
 
-  var busLine = {};
-  request(option, function(error, response, body){
-    if (response && response.statusCode === 200) {
-      body = JSON.parse(body);
-      for(key in body) {
-        busLine[key] = body[key].trim();
-      }
+  // var busLine = {};
+  // request(option, function(error, response, body){
+  //   if (response && response.statusCode === 200) {
+  //     body = JSON.parse(body);
+  //     for(key in body) {
+  //       busLine[key] = body[key].trim();
+  //     }
 
-      var op = {
-        url: busAPITwo,
-        qs: { action: 'Two', name: busLine.line_name, lineid: busLine.line_id }
-      }
+  //     var op = {
+  //       url: busAPITwo,
+  //       qs: { action: 'Two', name: busLine.line_name, lineid: busLine.line_id }
+  //     }
 
-      request(op, function(error, response, bd){
-        bd = JSON.parse(bd);
-        bd.busLine = busLine;
-        res.send(bd);
-      });
-    } else {
-      var query = new AV.Query('LinesInfo');
-      query.equalTo('line_name', name);
-      query.find().then(function(busData) {
-        var result = {};
-        busData = busData[0]._serverData;
-        result.busLine = {
-          "line_name": busData.line_name,
-          "line_id": busData.line_id,
-          "start_stop": busData.start_stop,
-          "end_stop": busData.end_stop,
-        };
-        result.lineResults0 = busData.lineResults0;
-        result.lineResults1 = busData.lineResults1;
-        console.error(result);
-        console.error('test---', res);
-        res.send(result);
-      });
-    }
+  //     request(op, function(error, response, bd){
+  //       bd = JSON.parse(bd);
+  //       bd.busLine = busLine;
+  //       res.send(bd);
+  //     });
+  //   } else {
+  var query = new AV.Query('LinesInfo');
+  query.equalTo('line_name', name);
+  query.find().then(function(busData) {
+    var result = {};
+    busData = busData[0]._serverData;
+    result.busLine = {
+      "line_name": busData.line_name,
+      "line_id": busData.line_id,
+      "start_stop": busData.start_stop,
+      "end_stop": busData.end_stop,
+    };
+    result.lineResults0 = busData.lineResults0;
+    result.lineResults1 = busData.lineResults1;
+    console.error(JSON.stringify(result));
+    res.send(result);
   });
+  //   }
+  // });
 });
 
 router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next){
