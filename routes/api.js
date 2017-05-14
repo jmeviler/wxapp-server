@@ -78,10 +78,13 @@ router.get('/bus/:name', function(req, res, next){
       "line_id": busData.line_id,
       "start_stop": busData.start_stop,
       "end_stop": busData.end_stop,
+      "start_earlytime": busData.start_earlytime,
+      "start_latetime": busData.start_latetime,
+      "end_earlytime": busData.end_earlytime,
+      "end_latetime": busData.end_latetime
     };
     result.lineResults0 = busData.lineResults0;
     result.lineResults1 = busData.lineResults1;
-    console.error(JSON.stringify(result));
     res.send(result);
   });
   //   }
@@ -99,21 +102,21 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
     qs: { action: 'Three', name: name, lineid: lineId, stopid: stopId, direction: direction }
   }
 
-  request(option, function(error, response, body){
-    if (response && response.statusCode === 200) {
-      res.send(JSON.parse(body));
-    } else {
-      option.url = detailUrl;
-      request(option, function(error, response, bd){
-        if (response && response.statusCode === 200) {
-          var xotree = new ObjTree();
-          res.send({ cars: xotree.parseXML(bd).result.cars.car });
-        } else {
-          res.send({ "cars":[] });
-        }
-      });
-    }
-  });
+  // request(option, function(error, response, body){
+    // if (response && response.statusCode === 200) {
+    //   res.send(JSON.parse(body));
+    // } else {
+    option.url = detailUrl;
+    request(option, function(error, response, bd){
+      if (response && response.statusCode === 200) {
+        var xotree = new ObjTree();
+        res.send({ cars: xotree.parseXML(bd).result.cars.car });
+      } else {
+        res.send({ "cars":[] });
+      }
+    });
+  //   }
+  // });
 });
 
 module.exports = router;
