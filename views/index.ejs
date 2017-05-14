@@ -1,11 +1,289 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>LeanEngine</title>
+<!DOCTYPE html>
+<head>
+    <title>上海Bus - 上海实时公交</title>
+
+    <!-- META DATA -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/bicolor.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/animate.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-  </head>
-  <body>
-    <h1>LeanEngine</h1>
-    <p>这是 LeanEngine 微信自动问答机器人的演示项目。</p>
-  </body>
+    <!--<link rel="stylesheet" href="/stylesheets/custom.css">-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="http://www.xthsoft.com/haimeng/static/comingsoon/assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="http://www.xthsoft.com/haimeng/static/comingsoon/assets/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://www.xthsoft.com/haimeng/static/comingsoon/assets/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://www.xthsoft.com/haimeng/static/comingsoon/assets/img/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+<div id="awd-site-wrap" class="bg bg-home">
+
+<div id="bg">
+    <div id="overlay">
+        <div class="awd-site-bg bg-home"></div>
+        <div class="awd-site-bg bg-subscribe"></div>
+        <div class="awd-site-bg bg-about"></div>
+        <div class="awd-site-bg bg-contact"></div>
+        <div class="awd-site-bg bg-services"></div>
+    </div>
+    <canvas id="awd-site-canvas"></canvas>
+</div>
+
+<!-- START SITE HEADER -->
+<header id="awd-site-header">
+    <div id="awd-site-logo" class="animated" data-animation="fadeInDown" data-animation-delay="500">
+        <h1>
+            <a href="#" class="go-slide" data-slide="home">
+                <i class="fa fa-car"></i>
+                <span style="font-size: smaller;">上海Bus</span>
+            </a>
+        </h1>
+    </div>
+
+    <button class="menu-toggle animated" data-animation="fadeInDown" data-animation-delay="500" data-role="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <!-- START NAVIGATION -->
+    <nav id="awd-site-nav" class="navigation animated" data-animation="fadeInDown" data-animation-delay="500">
+        <div class="nav-container">
+
+            <!-- START NAVIGATION MENU ITEMS -->
+            <ul>
+                <li><a href="#" data-slide="home" class="active">首页</a></li>
+                <li><a href="#" data-slide="subscribe">关于</a></li>
+                <li><a href="#" data-slide="contact">联系我们</a></li>
+            </ul>
+            <!-- END NAVIGATION MENU ITEMS -->
+
+        </div>
+    </nav>
+    <!-- END NAVIGATION -->
+</header>
+<!-- END SITE HEADER -->
+
+<!-- START MAIN -->
+<main id="awd-site-main">
+<!-- START SECTION -->
+<section id="awd-site-content">
+<div class="sections-block">
+<div class="slides">
+
+<div class="slides-wrap">
+<!-- HOME SECTION -->
+<div class="slide-item" data-slide-id="home">
+    <!-- START CONTAINER -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- START SLIDE CONTENT-->
+                <div class="slide-content">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 svm">
+                            <div class="section-info text-left">
+                                <div class="countdown">
+                                    <div id="clock" class="animated" data-animation="fadeIn" data-animation-delay="60"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-lg-offset-1 col-md-6 svm">
+                            <div class="section-info text-right">
+                                <!-- START TITLE -->
+                                <h2 class="section-title text-default animated" data-animation="fadeIn" data-animation-delay="50">
+                                    Hey Guys!<br/>
+                                    上海Bus上线啦...
+                                </h2>
+                                <!-- END TITLE -->
+                                <p class="animated" data-animation="fadeIn" data-animation-delay="55">
+                                    上海Bus－上海实时公交查询.<br/>
+                                    它将为您解决交通出行解决困扰.
+                                </p>
+                                <a href="#" class="btn go-slide animated" data-animation="fadeIn" data-animation-delay="60" data-slide="subscribe">更多资料</a>
+                                <a href="#" class="btn btn-inverse go-slide animated" data-animation="fadeIn" data-animation-delay="60" data-slide="contact">联系我们!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SLIDE CONTENT-->
+            </div>
+        </div>
+    </div>
+    <!-- END CONTAINER -->
+</div>
+
+<!-- SUBSCRIBE SECTION -->
+<div class="slide-item" data-slide-id="subscribe">
+    <!-- START CONTAINER -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- START SLIDE CONTENT-->
+                <div class="slide-content">
+                    <div class="row">
+                        <div class="col-lg-5 col-lg-offset-2 col-md-6 col-md-offset-1 col-md-push-5 svm">
+                            <div class="section-info text-right">
+                                <!-- START TITLE -->
+                                <h2 class="section-title text-default animated" data-animation="fadeIn">关于上海Bus</h2>
+                                <!-- END TITLE -->
+                                <p class="animated" data-animation="fadeIn" data-animation-delay="100">
+                                    上海Bus－上海实时公交查询，是一款微信小程序。
+                                    其包含上海主要公交线路的查询 (共<strong>1084</strong>条)，
+                                    快递查询，实时天气查询等功能。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-pull-7 svm">
+                            <div class="section-info text-left">
+                                <!-- SERVICE -->
+                                <div class="service animated" data-animation="fadeIn" data-animation-delay="150">
+                                    <h3>实时公交</h3>
+                                    <p>
+                                        涵盖了上海主要公交线路，为您的出行提供稳定可靠的信息查询，从此不再为等公交而烦恼。
+                                    </p>
+                                </div>
+
+                                <!-- SERVICE -->
+                                <div class="service animated" data-animation="fadeIn" data-animation-delay="150">
+                                    <h3>二维码</h3>
+                                    <p>
+                                        <img style="width: 260px;" src="/images/weapp_qrcode.svg" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END SLIDE CONTENT-->
+            </div>
+        </div>
+        <!-- END ROW -->
+    </div>
+    <!-- END CONTAINER -->
+</div>
+
+<!-- CONTACT SECTION -->
+<div class="slide-item" data-slide-id="contact">
+    <!-- START CONTAINER -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- START SLIDE CONTENT-->
+                <div class="slide-content">
+                    <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-push-6 svm">
+
+                            <div class="section-info text-right">
+                                <!-- START TITLE -->
+                                <h2 class="section-title text-default animated" data-animation="fadeIn">联系我们</h2>
+                                <!-- END TITLE -->
+                                <div class="contact-info">
+                                    <p class="contact-item"><i class="fa fa-github"></i>
+                                        <i class="fa "></i>:
+                                        <a href="https://github.com/jmeviler/weApp">上海Bus</a>
+                                    </p>
+                                    <p class="contact-item"><i class="fa fa-envelope"></i> 邮箱: admin@onexway.xyz</p>
+                                </div>
+                                <p class="animated" data-animation="fadeIn" data-animation-delay="100">
+                                    <h3>上海Bus－上海实时公交查询</h3>
+                                    <h5>让您不再因等车二烦恼</h5>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-md-pull-6 svm">
+                            <div class="section-info text-left">
+                            <!-- START CONTACT FORM -->
+                            <form id="contact-form" class="contact-form hidden">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-md-12 animated" data-animation="fadeIn" data-animation-delay="200">
+                                        <input type="text" name="contact-name" placeholder="真实姓名"
+                                               class="contact-form-name required">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-md-12 animated" data-animation="fadeIn" data-animation-delay="200">
+                                        <input type="email" name="contact-email" placeholder="电子邮箱"
+                                               class="contact-form-email required">
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 animated" data-animation="fadeIn" data-animation-delay="200">
+                                        <input type="text" name="contact-subject" placeholder="从事行业"
+                                               class="contact-form-subject required">
+                                    </div>
+                                    <!-- END COLUMN 4 -->
+                                    <div class="col-md-12 animated" data-animation="fadeIn" data-animation-delay="150">
+                                        <textarea name="contact-message" placeholder="说两句吧..."
+                                                  class="contact-form-message required"
+                                                  rows="4"></textarea>
+                                        <button class="btn btn-block" type="submit" id="submit" name="submit"><span>放飞梦想</span>
+                                            <i class="fa fa-send"></i></button>
+                                    </div>
+                                    <!-- END COLUMN 8 -->
+                                </div>
+                                <!-- END ROW -->
+                                <div class="contact-notice"></div>
+                            </form>
+                            <!-- END CONTACT FORM -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END SLIDE CONTENT-->
+            </div>
+        </div>
+        <!-- END ROW -->
+    </div>
+    <!-- END CONTAINER -->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+<!-- END SECTION -->
+</main>
+<!-- END MAIN -->
+
+
+<footer id="awd-site-footer">
+    <!-- START COPYRIGHT -->
+    <div class="copyright animated" data-animation="fadeInUp" data-animation-delay="500">
+        <p>&copy; 2015-2017 Ben Li - All Rights Reserved</p>
+    </div>
+    <!-- END COPYRIGHT -->
+
+    <!-- START SOCIAL ICONS -->
+    <nav class="social-icons animated hidden" data-animation="fadeInUp" data-animation-delay="500">
+        <ul>
+        </ul>
+    </nav>
+    <!-- END SOCIAL ICONS -->
+</footer>
+
+</div>
+
+<!-- JS -->
+<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/vendor.js"></script>
+<script type="text/javascript" src="/js/options.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+</body>
 </html>
