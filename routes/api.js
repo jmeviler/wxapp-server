@@ -51,7 +51,7 @@ router.get('/bus/:name', function(req, res, next){
 
   var busLine = {};
   request(option, function(error, response, body){
-    if (response.statusCode === 200) {
+    if (response && response.statusCode === 200) {
       body = JSON.parse(body);
       for(key in body) {
         busLine[key] = body[key].trim();
@@ -68,6 +68,7 @@ router.get('/bus/:name', function(req, res, next){
         res.send(bd);
       });
     } else {
+      console.error(JSON.stringify(response));
       var query = new AV.Query('LinesInfo');
       query.equalTo('line_name', name);
       query.find().then(function(busData) {
@@ -99,12 +100,12 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
   }
 
   request(option, function(error, response, body){
-    if (response.statusCode === 200) {
+    if (response && response.statusCode === 200) {
       res.send(JSON.parse(body));
     } else {
       option.url = detailUrl;
       request(option, function(error, response, bd){
-        if (response.statusCode === 200) {
+        if (response && response.statusCode === 200) {
           var xotree = new ObjTree();
           res.send({ cars: xotree.parseXML(bd).result.cars.car });
         } else {
