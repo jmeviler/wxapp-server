@@ -1,4 +1,6 @@
 var router = require('express').Router();
+var logger = require('log4js').getLogger();
+
 var rp = require('request-promise');
 var wechat = require('wechat');
 var token = require('../actions/token');
@@ -22,15 +24,9 @@ var api = new WechatAPI(APPID, SecretKey);
 
 router.use('/', wechat(config.token).text(function (message, req, res, next) {
   var content = message.Content;
-
-  if (content === 'test') {
-    weather();
-    return;
-  }
-
   if (content === 'token') {
     api.getLatestToken(function (err, data, res) {
-      console.error(JSON.stringify(data));
+      logger.debug(JSON.stringify(data));
     });
     return;
   }

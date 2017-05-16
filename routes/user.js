@@ -1,6 +1,7 @@
 var AV = require('leanengine');
 var request = require('request');
 var router = require('express').Router();
+var logger = require('log4js').getLogger();
 
 router.post('/add', function(req, res, next) {
   var params = req.body;
@@ -14,15 +15,15 @@ router.post('/add', function(req, res, next) {
         updateMember.fetchWhenSave(true);
         return updateMember.save();
       }).then(function (updateMember) {
-        console.error(JSON.stringify(updateMember), 'update memeber success');
+        logger.debug(params.nickName, '---update memeber success');
       }, function (error) {
-        console.error(JSON.stringify(error), 'update memeber fail');
+        logger.error(JSON.stringify(error), '---update memeber fail');
       });
     } else {
       var Member = AV.Object.extend('Member');
       var newMember = new Member();
       newMember.save(params).then(function(object) {
-        console.error(JSON.stringify(object), '---save memver success');
+        logger.debug(params.nickName, '---save memver success');
       });
     }
   });
@@ -35,7 +36,7 @@ router.post('/feedback', function(req, res, next) {
   var Feedback = AV.Object.extend('Feedback');
   var newFeedback = new Feedback();
   newFeedback.save(params).then(function(object) {
-    console.error(JSON.stringify(object), '---save feedback success');
+    logger.debug(params.nickName, params.content, '---save feedback success');
   });
 
   res.send({});

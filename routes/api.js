@@ -2,6 +2,7 @@ var AV = require('leanengine');
 var ObjTree = require('objtree');
 var request = require('request');
 var router = require('express').Router();
+var logger = require('log4js').getLogger();
 
 var baiduKey = process.env.baiduKey;
 var expressAPI = process.env.expressAPI;
@@ -9,6 +10,30 @@ var busAPIOne = process.env.busAPIOne;
 var busAPITwo = process.env.busAPITwo;
 var busAPIThree = process.env.busAPIThree;
 var detailUrl = process.env.busAPIFour;
+
+function saveBusName (name) {
+  var queryObj = new AV.Query('BusNames');
+  queryObj.equalTo('name', name).find().then(function(data) {
+    if (data.length) {
+      var updateObj = AV.Object.createWithoutData('BusNames', data[0].id);
+      updateObj.save().then(function (updateObj) {
+        updateObj.increment('count', 1);
+        updateObj.fetchWhenSave(true);
+        return updateObj.save();
+      }).then(function (updateObj) {
+        logger.debug(name, '---update bus name success');
+      }, function (error) {
+        logger.error(JSON.stringify(error), '---update bus name fail');
+      });
+    } else {
+      var BusNames = AV.Object.extend('BusNames');
+      var busNames = new BusNames();
+      busNames.save({ 'name': name }).then(function(object) {
+        logger.debug(name, '---save bus name success');
+      });
+    }
+  });
+}
 
 router.get('/weather', function(req, res, next) {
   var option = {
@@ -44,6 +69,7 @@ router.get('/express/:type/:postId', function(req, res, next){
 
 router.get('/bus/:name', function(req, res, next){
   var name = req.params.name;
+  saveBusName(name);
   var option = {
     url: busAPIOne,
     qs: { action: 'One', name: name }
@@ -107,6 +133,7 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
       res.send(JSON.parse(body));
     } else {
       option.url = detailUrl;
+      option.direction = option.direction ? true : false;
       request(option, function(error, response, bd){
         if (response && response.statusCode === 200) {
           var xotree = new ObjTree();
