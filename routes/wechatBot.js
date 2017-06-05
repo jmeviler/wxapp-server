@@ -64,4 +64,21 @@ router.use('/', wechat(config.token).text(function (message, req, res, next) {
     });
 }).middlewarify());
 
+router.use('/config/:url', function(req, res, next) {
+  var url = req.params.url;
+  logger.debug(url, '---config url');
+  var param = {
+    debug: false,
+    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
+    url: 'http://robot.leanapp.cn'
+  };
+  if (!api.getLatestTicket()) {
+    api.getTicket();
+  }
+  logger.debug(api.getLatestTicket(), '--- last ticket');
+  api.getJsConfig(param, (result) => {
+    logger.error(JSON.stringify(result));
+    res.send({result});
+  });
+});
 module.exports = router;
