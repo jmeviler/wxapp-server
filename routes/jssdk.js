@@ -24,7 +24,9 @@ router.get('/jsconfig', function(req, res, next) {
     url: 'http://robot.leanapp.cn'
   };
   if (!api.getLatestTicket()) {
-    api.getTicket();
+    api.getTicket((result) => {
+      logger.error(JSON.stringify(result), '---get Ticket');
+    });
   }
   logger.debug(api.getLatestTicket(), '--- last ticket');
 });
