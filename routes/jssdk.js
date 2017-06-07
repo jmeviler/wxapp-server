@@ -23,12 +23,18 @@ router.get('/jsconfig', function(req, res, next) {
     jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
     url: 'http://robot.leanapp.cn'
   };
-  if (!api.getLatestTicket()) {
-    api.getTicket((result) => {
-      logger.error(JSON.stringify(result), '---get Ticket');
-    });
-  }
-  logger.debug(api.getLatestTicket(), '--- last ticket');
+
+  var ticket = {};
+  api.getTicket(function(result) {
+    ticket = result;
+    logger.error(JSON.stringify(result), '---get Ticket');
+  });
+
+  api.getJsConfig(param, function(result) {
+    logger.error(JSON.stringify(result), '---get JsConfig');
+  });
+
+  res.send({});
 });
 
 module.exports = router;
