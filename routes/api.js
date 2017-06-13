@@ -10,6 +10,7 @@ var busAPIOne = process.env.busAPIOne;
 var busAPITwo = process.env.busAPITwo;
 var busAPIThree = process.env.busAPIThree;
 var detailUrl = process.env.busAPIFour;
+var dispatchUrl = process.env.busAPISix;
 
 function saveBusName (name) {
   var queryObj = new AV.Query('BusNames');
@@ -137,9 +138,22 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
       request(option, function(error, response, bd){
         if (response && response.statusCode === 200) {
           var xotree = new ObjTree();
-          res.send({ cars: xotree.parseXML(bd).result.cars.car });
+          var cars = xotree.parseXML(bd).result.cars.car
+          console.error(cars[0].time, cars[0].time !== 'null')
+          if (cars[0].time !== 'null') {
+            res.send({ cars: cars });
+          } else {
+            request({
+              url: dispatchUrl,
+              qs: { direction: direction, lineid: lineId, stopid: stopId }
+            }, function(error, response, resBd){
+              var xotree = new ObjTree();
+              var cars = xotree.parseXML(resBd).result.cars.car || [];
+              res.send({ "cars": cars, noCar: true });
+            });
+          }
         } else {
-          res.send({ "cars":[] });
+          res.send({ "cars": [] });
         }
       });
     }
