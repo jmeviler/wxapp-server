@@ -77,24 +77,24 @@ router.get('/bus/:name', function(req, res, next){
   }
 
   var busLine = {};
-  request(option, function(error, response, body){
-    if (response && response.statusCode === 200) {
-      body = JSON.parse(body);
-      for(key in body) {
-        busLine[key] = body[key].trim();
-      }
+  // request(option, function(error, response, body){
+  //   if (response && response.statusCode === 200) {
+  //     body = JSON.parse(body);
+  //     for(key in body) {
+  //       busLine[key] = body[key].trim();
+  //     }
 
-      var op = {
-        url: busAPITwo,
-        qs: { action: 'Two', name: busLine.line_name, lineid: busLine.line_id }
-      }
+  //     var op = {
+  //       url: busAPITwo,
+  //       qs: { action: 'Two', name: busLine.line_name, lineid: busLine.line_id }
+  //     }
 
-      request(op, function(error, response, bd){
-        bd = JSON.parse(bd);
-        bd.busLine = busLine;
-        res.send(bd);
-      });
-    } else {
+  //     request(op, function(error, response, bd){
+  //       bd = JSON.parse(bd);
+  //       bd.busLine = busLine;
+  //       res.send(bd);
+  //     });
+  //   } else {
       var query = new AV.Query('LinesInfo');
       query.equalTo('line_name', name);
       query.find().then(function(busData) {
@@ -114,8 +114,8 @@ router.get('/bus/:name', function(req, res, next){
         result.lineResults1 = busData.lineResults1;
         res.send(result);
       });
-    }
-  });
+  //   }
+  // });
 });
 
 router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next){
