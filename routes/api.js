@@ -74,17 +74,21 @@ router.get('/bus/:name', function(req, res, next){
     "line_name": '请使用 上海Bus 小程序',
     "line_id": '0',
     "start_stop": '请使用 上海Bus 小程序',
-    "end_stop": '请使用 上海Bus 小程序',
-    "start_earlytime": '0',
-    "start_latetime": '0',
-    "end_earlytime": '0',
-    "end_latetime": '0'
+    "end_stop": '本程序不再维护',
+    "start_earlytime": '本程序不再维护',
+    "start_latetime": '',
+    "end_earlytime": '本程序不再维护',
+    "end_latetime": ''
   };
   result.lineResults0 = {
     "direction": true,
     "stops": [
       {
-        "zdmc": "请使用 上海Bus 小程序",
+        "zdmc": "本程序不再维护",
+        "id": "1"
+      },
+      {
+        "zdmc": "请搜索使用 上海Bus 小程序",
         "id": "1"
       },
     ]
@@ -94,7 +98,11 @@ router.get('/bus/:name', function(req, res, next){
     "direction": false,
     "stops": [
       {
-        "zdmc": "请使用 上海Bus 小程序",
+        "zdmc": "请搜索使用 上海Bus 小程序",
+        "id": "1"
+      },
+      {
+        "zdmc": "打击盗版 人人有责",
         "id": "1"
       },
     ]
