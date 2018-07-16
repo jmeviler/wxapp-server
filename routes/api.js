@@ -76,20 +76,24 @@ router.get('/bus/:name', function(req, res, next){
     "start_stop": '请使用 上海Bus 小程序',
     "end_stop": '本程序不再维护',
     "start_earlytime": '本程序不再维护',
-    "start_latetime": '',
+    "start_latetime": '请使用 上海Bus 小程序',
     "end_earlytime": '本程序不再维护',
-    "end_latetime": ''
+    "end_latetime": '请使用 上海Bus 小程序'
   };
   result.lineResults0 = {
     "direction": true,
     "stops": [
       {
-        "zdmc": "本程序不再维护",
+        "zdmc": "通知: 本程序不再维护",
         "id": "1"
       },
       {
         "zdmc": "请搜索使用 上海Bus 小程序",
-        "id": "1"
+        "id": "2"
+      },
+      {
+        "zdmc": "全新升级, 稳定实时",
+        "id": "3"
       },
     ]
   };
@@ -102,8 +106,8 @@ router.get('/bus/:name', function(req, res, next){
         "id": "1"
       },
       {
-        "zdmc": "打击盗版 人人有责",
-        "id": "1"
+        "zdmc": "全新升级, 稳定实时",
+        "id": "2"
       },
     ]
   };
@@ -116,6 +120,7 @@ router.get('/busstop/:name/:lineid/:stopid/:direction', function(req, res, next)
   var lineId = req.params.lineid;
   var stopId = req.params.stopid;
   var direction = req.params.direction;
+  res.send({ "cars": [] });
 
   var option = {
     url: busAPIThree,
