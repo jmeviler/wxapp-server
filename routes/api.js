@@ -69,6 +69,52 @@ router.get('/express/:type/:postId', function(req, res, next){
 });
 
 router.get('/bus/:name', function(req, res, next){
+  // 本程序部署版本不在支持返回
+  // var name = req.params.name;
+  // saveBusName(name);
+  // var option = {
+  //   url: busAPIOne,
+  //   qs: { action: 'One', name: name }
+  // }
+  // var busLine = {};
+  // request(option, function(error, response, body){
+  //   if (response && response.statusCode === 200) {
+  //     body = JSON.parse(body);
+  //     for(key in body) {
+  //       busLine[key] = body[key].trim();
+  //     }
+  //     var op = {
+  //       url: busAPITwo,
+  //       qs: { action: 'Two', name: busLine.line_name, lineid: busLine.line_id }
+  //     }
+  //     request(op, function(error, response, bd){
+  //       bd = JSON.parse(bd);
+  //       bd.busLine = busLine;
+  //       res.send(bd);
+  //     });
+  //   } else {
+  //     var query = new AV.Query('LinesInfo');
+  //     query.equalTo('line_name', name);
+  //     query.find().then(function(busData) {
+  //       var result = {};
+  //       busData = busData[0]._serverData;
+  //       result.busLine = {
+  //         "line_name": busData.line_name,
+  //         "line_id": busData.line_id,
+  //         "start_stop": busData.start_stop,
+  //         "end_stop": busData.end_stop,
+  //         "start_earlytime": busData.start_earlytime,
+  //         "start_latetime": busData.start_latetime,
+  //         "end_earlytime": busData.end_earlytime,
+  //         "end_latetime": busData.end_latetime
+  //       };
+  //       result.lineResults0 = busData.lineResults0;
+  //       result.lineResults1 = busData.lineResults1;
+  //       res.send(result);
+  //     });
+  //   }
+  // });
+
   var result = {};
   result.busLine = {
     "line_name": '请使用 上海Bus 小程序',
