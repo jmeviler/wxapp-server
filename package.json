@@ -16,23 +16,22 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "body-parser": "1.12.3",
-    "cookie-parser": "^1.3.5",
-    "ejs": "2.3.1",
+    "body-parser": "1.17.1",
+    "cookie-parser": "1.3.5",
+    "ejs": "2.5.7",
     "express": "4.12.3",
-    "leancloud-realtime": "^3.3.1",
-    "leancloud-storage": "^1.5.2",
-    "leanengine": "^0.4.0",
-    "log4js": "^1.1.1",
-    "moment": "^2.15.1",
-    "objtree": "^0.1.24",
-    "request": "^2.78.0",
-    "request-promise": "^4.1.1",
+    "leancloud-storage": "3.0.0",
+    "leanengine": "3.0.0",
+    "log4js": "1.1.1",
+    "moment": "2.19.3",
+    "objtree": "0.1.24",
+    "request": "2.78.0",
+    "request-promise": "4.1.1",
     "strformat": "0.0.7",
-    "wechat": "^2.0.3",
-    "wechat-api": "^1.24.0"
+    "wechat": "2.0.3",
+    "wechat-api": "1.24.0"
   },
   "engines": {
-    "node": "4.x"
+    "node": "8.x"
   }
 }
