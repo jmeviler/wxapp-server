@@ -3,6 +3,7 @@ var http = require('http');
 var request  = require('request');
 
 var weather = require('./actions/weather');
+var checkIn = require('./actions/checkIn');
 
 var APPID = process.env.APPID;
 var SecretKey = process.env.SecretKey;
@@ -27,6 +28,11 @@ AV.Cloud.define('noSleep', function(request, response) {
 AV.Cloud.define('dailyWeather', function(req, response) {
   weather();
   response.success('send dailyWeather');
+});
+
+AV.Cloud.define('checkIn', function(req, response) {
+  checkIn();
+  response.success('checkIn success');
 });
 
 module.exports = AV.Cloud;
