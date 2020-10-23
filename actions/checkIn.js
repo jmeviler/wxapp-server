@@ -60,4 +60,4 @@ async function checkIn () {
   await chamtime();
 }
 
-module.exports = weather;
+module.exports = checkIn;
